@@ -1,16 +1,20 @@
 public class Map {
+
     private Room currentRoom;
 
+    public Map (){
+        buildMap();
+    }
     public void buildMap() {
         Room room1 = new Room("Room 1", "A simple room with 2 doors ");
-        Room room2 = new Room("Room 2", "Small room with bald man");
-        Room room3 = new Room("Room 3", "Big forrest with poison spiders.");
+        Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");
+        Room room3 = new Room("Room 3", " The great forrest filled with poison spiders.");
         Room room4 = new Room("Room 4", "Small den with two dead dragons.");
-        Room room5 = new Room("Room 5", "Small room with bald man");
-        Room room6 = new Room("Room 6", "Small room with bald man");
-        Room room7 = new Room("Room 7", "Small room with bald man");
-        Room room8 = new Room("Room 8", "Small room with bald man");
-        Room room9 = new Room("Room 9", "Small room with bald man");
+        Room room5 = new Room("Room 5", "Huge room with a bald man holding a sword");
+        Room room6 = new Room("Room 6", "Medium sized room with nothing but a bonsai tree and a sparrow");
+        Room room7 = new Room("Room 7", "Big hall with a crystal chandelier and a bloody brides dress");
+        Room room8 = new Room("Room 8", "Small mine shaft");
+        Room room9 = new Room("Room 9", "Big coal mine where you can hear your Friend john scream for help");
 
         //room 1 naboer
         room1.setNeighbourEast(room2);
