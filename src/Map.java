@@ -1,19 +1,74 @@
+import java.util.ArrayList;
+
 public class Map {
 
     private Room currentRoom;
 
-    public Map (){
+    public Map() {
         buildMap();
     }
+
     public void buildMap() {
+
+        ArrayList<Item> itemsRoom1 = new ArrayList<>();
+        ArrayList<Item> itemsRoom2 = new ArrayList<>();
+        ArrayList<Item> itemsRoom3 = new ArrayList<>();
+        ArrayList<Item> itemsRoom4 = new ArrayList<>();
+        ArrayList<Item> itemsRoom5 = new ArrayList<>();
+        ArrayList<Item> itemsRoom6 = new ArrayList<>();
+        ArrayList<Item> itemsRoom7 = new ArrayList<>();
+        ArrayList<Item> itemsRoom8 = new ArrayList<>();
+        ArrayList<Item> itemsRoom9 = new ArrayList<>();
+
+        //room 1 opret items og add
         Room room1 = new Room("Room 1", "A simple room with 2 doors ");
+
+        Item sword = new Item("Sword", "Small iron sword.");
+        Item lamp = new Item("Lamp", "Cobber lamp with a cobweb");
+        room1.addItem(sword);
+        room1.addItem(lamp);
+
+        //room 2 er tomt for items
         Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");
+
+        //room 3 opret
         Room room3 = new Room("Room 3", " The great forrest filled with poison spiders.");
+
+        //items opret og add
+        Item cards = new Item("cards", "playing cards made of leaves");
+        Item silverBullets = new Item("bullets", "Bullets made of silver. Excellent against vampires");
+        Item dryInk = new Item("ink", "Capsule of dried out ink");
+
+        room3.addItem(cards);
+        room3.addItem(silverBullets);
+        room3.addItem(dryInk);
+
+        //room 4 opret
         Room room4 = new Room("Room 4", "Small den with two dead dragons.");
+
+        //item opret og add
+        Item book = new Item("Book", "Old brown book.");
+        room4.addItem(book);
+
+        //room 5 opret
         Room room5 = new Room("Room 5", "Huge room with a bald man holding a sword");
+
+        //item opret og add
+
+        Item oldHat = new Item("Hat", "Tophat in the finest wool");
+        Item goldCoin = new Item("Coin", "Gold coin with the year and day of today");
+
+        room5.addItem(oldHat);
+        room5.addItem(goldCoin);
+
+
         Room room6 = new Room("Room 6", "Medium sized room with nothing but a bonsai tree and a sparrow");
+
         Room room7 = new Room("Room 7", "Big hall with a crystal chandelier and a bloody brides dress");
+
+
         Room room8 = new Room("Room 8", "Small mine shaft");
+
         Room room9 = new Room("Room 9", "Big coal mine where you can hear your Friend john scream for help");
 
         //room 1 naboer
@@ -58,4 +113,5 @@ public class Map {
     public Room getCurrentRoom() {
         return currentRoom;
     }
+
 }

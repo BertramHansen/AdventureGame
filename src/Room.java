@@ -1,6 +1,11 @@
+import com.sun.source.tree.ReturnTree;
+
+import java.util.ArrayList;
+
 public class Room {
     private String name;
     private String roomDescription;
+    private ArrayList<Item> items = null;
 
     //Naboer
     private Room neighbourNorth, neighbourSouth, neighbourWest, neighbourEast;
@@ -8,6 +13,7 @@ public class Room {
     public Room(String name, String roomDescription) {
         this.name = name;
         this.roomDescription = roomDescription;
+        this.items = new ArrayList<>();
     }
 
     //getter for name og description
@@ -51,5 +57,32 @@ public class Room {
 
     public void setNeighbourNorth(Room north) {
         this.neighbourNorth = north;
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public Item findItem(String shortName) {
+        for (Item item : items) {
+            if (item.getShortName().equalsIgnoreCase(shortName)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+
+    @Override
+    public String toString() {
+        return name + ": " + roomDescription;
     }
 }
