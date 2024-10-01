@@ -83,6 +83,10 @@ public class Room {
 
     @Override
     public String toString() {
-        return name + ": " + roomDescription;
+        if (!items.isEmpty()) {
+            return name + roomDescription;
+        } else {
+            return "there is nothing to pick up here";
+        }
     }
 }

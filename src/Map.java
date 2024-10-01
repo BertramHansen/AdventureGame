@@ -114,4 +114,14 @@ public class Map {
         return currentRoom;
     }
 
+//    public boolean noNeighbours() {
+//        if (getCurrentRoom().getNeighbourWest() == null
+//                && getCurrentRoom().getNeighbourEast() == null
+//                && getCurrentRoom().getNeighbourSouth() == null
+//                && getCurrentRoom().getNeighbourNorth() == null) {
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 }
