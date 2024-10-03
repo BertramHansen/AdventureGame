@@ -51,7 +51,7 @@ public class Player {
         }
     }
 
-    private Item findItemInInventory(String itemName) {
+    public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
             if (item.getShortName().equalsIgnoreCase(itemName) || item.getLongName().equalsIgnoreCase(itemName)) {
                 return item;
@@ -59,6 +59,13 @@ public class Player {
         }
         return null;
     }
+    public String currentRoomName(){
+        return placement.getName();
+    }
+    public String currentRoomDescription(){
+        return placement.getRoomDescription();
+    }
+
 }
 
 
