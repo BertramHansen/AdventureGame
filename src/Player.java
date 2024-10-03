@@ -1,12 +1,29 @@
 import java.util.ArrayList;
 
 public class Player {
-    Room placement;
-    ArrayList<Item> inventory = new ArrayList<>();
+    private Room placement;
+    private ArrayList<Item> inventory = new ArrayList<>();
+    private int playerHealth = 100;
 
     public Player(Room placement) {
         this.placement = placement;
         this.inventory = new ArrayList<>(); //initialisering
+    }
+
+    public void increaseHealth(int increase) {
+        playerHealth += increase;
+    }
+
+    public void decreaseHealth(int decrease) {
+        playerHealth -= decrease;
+    }
+
+    public int getPlayerHealth() {
+        return playerHealth;
+    }
+
+    public void setPlayerHealth(int playerHealth) {
+        this.playerHealth = playerHealth;
     }
 
     public Room move(String movement) {
@@ -59,13 +76,32 @@ public class Player {
         }
         return null;
     }
-    public String currentRoomName(){
+
+    public String currentRoomName() {
         return placement.getName();
     }
-    public String currentRoomDescription(){
+
+    public String currentRoomDescription() {
         return placement.getRoomDescription();
     }
 
+    public Room getPlacement() {
+        return placement;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void eat(Food food) {
+        for (Item item : getPlacement().getItems()) {
+            if (!(item instanceof Food)) {
+                System.out.println("Yuck!!! You cannot eat that.");
+
+
+            }
+        }
+    }
 }
 
 

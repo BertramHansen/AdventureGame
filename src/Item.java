@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Item {
-    String shortName;
-    String longName;
+    protected String shortName;
+    protected  String longName;
 
     public Item(String shortName, String longName) {
         this.shortName = shortName;

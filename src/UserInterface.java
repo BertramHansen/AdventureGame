@@ -24,6 +24,12 @@ public class UserInterface {
         System.out.println("------------------------------------------------------------------------------------------------------");
 
 
+        System.out.println("You are starting here:\n" + adventure.getCurrentRoomName() + ": " + adventure.getCurrentRoomDescription());
+        int counting = 0;
+        for (Item item : adventure.seeItemsInCurrentRoom()) {
+            counting++;
+            System.out.println(counting + ". " + item);
+        }
         String userChoice = "";
         while (!userChoice.equalsIgnoreCase("exit")) {
             Scanner input = new Scanner(System.in);
@@ -40,10 +46,10 @@ public class UserInterface {
                             System.out.println("There is nothing exciting to take here.");
                         } else {
                             System.out.println("Items in this room: ");
-                            int counting = 0;
+                            int counter = 0;
                             for (Item item : adventure.seeItemsInCurrentRoom()) {
-                                counting++;
-                                System.out.println(counting + ". " + item);
+                                counter++;
+                                System.out.println(counter + ". " + item);
                             }
                         }
                     }
@@ -81,6 +87,11 @@ public class UserInterface {
                     System.out.println("Type look to have a look at your surroundings");
                     System.out.println("Type exit to exit game  ");
                     break;
+
+
+                case "health", "hp":
+                    System.out.println("Current health: " + adventure.seeHealth());
+                    break;
                 case "exit":
                     System.out.println("You have now stopped the game. See ya! ");
                     break;
@@ -101,10 +112,14 @@ public class UserInterface {
                     } else {
                         System.out.println("Invalid input.");
                         break;
+                    }
+                    if (userChoice.startsWith("eat ")) {
+
+                            }
+                        }
+                        }
 
                     }
+
             }
 
-        }
-    }
-}

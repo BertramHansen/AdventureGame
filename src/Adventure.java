@@ -3,8 +3,8 @@ import java.util.ArrayList;
 //klassen skal videredelegere. (central) alt SOUT skal i UI.
 public class Adventure {
 
-    Player player;
-    Map map;
+    protected Player player;
+    protected Map map;
 
     public Adventure() {
         map = new Map();
@@ -22,26 +22,26 @@ public class Adventure {
     }
 
     public boolean checkRoomForItems() {
-        if (player.placement.getItems().isEmpty()) {
+        if (player.getPlacement().getItems().isEmpty()) {
             return false;
         }
         return true;
     }
 
     public boolean checkInventoryForItems() {
-        if (player.inventory.isEmpty()) {
+        if (player.getInventory().isEmpty()) {
             return false;
         }
         return true;
     }
 
     public ArrayList<Item> seePlayerInventory() {
-        return player.inventory;
+        return player.getInventory();
     }
 
     public ArrayList<Item> seeItemsInCurrentRoom() {
         ArrayList<Item> itemsInRoom = new ArrayList<>();
-        itemsInRoom = player.placement.getItems();
+        itemsInRoom = player.getPlacement().getItems();
         return itemsInRoom;
     }
 
@@ -52,5 +52,12 @@ public class Adventure {
 
     public String getCurrentRoomDescription() {
         return player.currentRoomDescription();
+    }
+
+    public int seeHealth(){
+        return player.getPlayerHealth();
+    }
+    public void playerEat(Food item){
+        player.eat(item);
     }
 }

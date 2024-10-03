@@ -25,6 +25,9 @@ public class Map {
 
         Item sword = new Item("Sword", "Small iron sword.");
         Item lamp = new Item("Lamp", "Cobber lamp with a cobweb");
+        Food apple  = new Food("Apple", "Delicious sweet juicy apple", 5);
+
+        room1.addItem(apple);
         room1.addItem(sword);
         room1.addItem(lamp);
 
@@ -35,9 +38,9 @@ public class Map {
         Room room3 = new Room("Room 3", " The great forrest filled with poison spiders.");
 
         //items opret og add
-        Item cards = new Item("cards", "playing cards made of leaves");
-        Item silverBullets = new Item("bullets", "Bullets made of silver. Excellent against vampires");
-        Item dryInk = new Item("ink", "Capsule of dried out ink");
+        Item cards = new Item("Cards", "playing cards made of leaves");
+        Item silverBullets = new Item("Bullets", "Bullets made of silver. Excellent against vampires");
+        Item dryInk = new Item("Ink", "Capsule of dried out ink");
 
         room3.addItem(cards);
         room3.addItem(silverBullets);
