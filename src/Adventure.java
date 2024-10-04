@@ -57,7 +57,20 @@ public class Adventure {
     public int seeHealth(){
         return player.getPlayerHealth();
     }
-    public void playerEat(Food item){
-        player.eat(item);
-    }
-}
+
+    public String eat(String foodName) {
+        FoodStatus status = player.eat(foodName);
+        switch (status) {
+            case GOOD:
+                return "You ate the " + foodName + "!" + " You gained " + player.getPlayerHealth() + " healthpoints.";
+            case BAD:
+                return "That wasn't good..." + "you just lost health :( Current health:" + player.getPlayerHealth() + " healthpoints";
+            case NOT_FOOD:
+                return "You cannot eat that!";
+            case NOT_HERE:
+                return "There is no such thing as " + foodName + " in your inventory or in this room.";
+
+            default:
+                return "Invalid input!";
+        }
+} }

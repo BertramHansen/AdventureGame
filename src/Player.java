@@ -15,7 +15,7 @@ public class Player {
     }
 
     public void decreaseHealth(int decrease) {
-        playerHealth -= decrease;
+        playerHealth = playerHealth - (decrease);
     }
 
     public int getPlayerHealth() {
@@ -93,15 +93,41 @@ public class Player {
         return inventory;
     }
 
-    public void eat(Food food) {
-        for (Item item : getPlacement().getItems()) {
-            if (!(item instanceof Food)) {
-                System.out.println("Yuck!!! You cannot eat that.");
 
-
+    public FoodStatus eat(String foodName) {
+        Item itemToEat = findItemInInventory(foodName);
+        if (itemToEat == null) {
+            itemToEat = placement.findItem(foodName);
+            if (itemToEat == null) {
+                return FoodStatus.NOT_HERE; // Mad findes ikke
             }
         }
+        if (itemToEat instanceof Food) {
+            Food food = (Food) itemToEat;
+            if (food.getHealthPoint() > 0) {
+                increaseHealth(food.getHealthPoint());
+                inventory.remove(food);
+                placement.removeItem(food);
+                return FoodStatus.GOOD;
+            } else if (food.getHealthPoint() < 0) {
+                decreaseHealth(- food.getHealthPoint());
+                inventory.remove(food);
+                placement.removeItem(food);
+                return FoodStatus.BAD;
+            } else if (!(itemToEat instanceof Food)) {
+                return FoodStatus.NOT_FOOD;
+            }
+        }
+        return FoodStatus.NOT_FOOD;
     }
 }
+
+
+//        @Override
+//        public String toString {
+//            return "Current health: " + playerHealth;
+
+
+
 
 

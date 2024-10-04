@@ -8,7 +8,7 @@ public class UserInterface {
     public void game() {
         Adventure adventure = new Adventure();
 
-        System.out.println("------------------------------------------------------------------------------------------------------");
+        System.out.println("==========[======================================================================================>>>>");
         //Emojipedia.com er en hjemmeside hvor man kna kopiere kode til eojis og bruge dem i strings
         System.out.println("\t\uD83D\uDD25Welcome to Bertrams Adventure Game!!\uD83D\uDD25 ");
         System.out.println("Your command options are: ");
@@ -21,7 +21,7 @@ public class UserInterface {
         System.out.println("\t7) If you want to drop an item from your inventory, type ''drop and then the short name for the item you wish to drop.");
         System.out.println("\tNOTE!!!! PRESS ENTER WHEN YOU HAVE TYPED THE COMMAND YOU WISH TO COMPLETE:)");
         System.out.println("\nGood luck... you are going to need it...");
-        System.out.println("------------------------------------------------------------------------------------------------------");
+        System.out.println("==========[======================================================================================>>>>");
 
 
         System.out.println("You are starting here:\n" + adventure.getCurrentRoomName() + ": " + adventure.getCurrentRoomDescription());
@@ -109,17 +109,22 @@ public class UserInterface {
                         if (!itemName.isEmpty()) {
                             System.out.println(adventure.player.dropItem(itemName));
                         }
-                    } else {
-                        System.out.println("Invalid input.");
                         break;
                     }
                     if (userChoice.startsWith("eat ")) {
-
-                            }
+                        String itemName = userChoice.substring(4).trim();
+                        itemName.equalsIgnoreCase(itemName);
+                        if (!itemName.isEmpty()) {
+                            String eatResult = adventure.eat(itemName);
+                            System.out.println(eatResult);
                         }
-                        }
+                    } else {
+                        System.out.println("Invalid input.");
 
                     }
-
             }
+        }
+
+    }
+}
 

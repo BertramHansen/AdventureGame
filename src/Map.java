@@ -25,11 +25,13 @@ public class Map {
 
         Item sword = new Item("Sword", "Small iron sword.");
         Item lamp = new Item("Lamp", "Cobber lamp with a cobweb");
-        Food apple  = new Food("Apple", "Delicious sweet juicy apple", 5);
+        Item apple  = new Food("Apple", "Delicious sweet juicy apple", 5);
+        Item lort = new Food("Lort", "Lort", (-(5)));
 
         room1.addItem(apple);
         room1.addItem(sword);
         room1.addItem(lamp);
+        room1.addItem(lort);
 
         //room 2 er tomt for items
         Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");
