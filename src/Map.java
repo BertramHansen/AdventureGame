@@ -25,8 +25,8 @@ public class Map {
 
         Item sword = new Item("Sword", "Small iron sword.");
         Item lamp = new Item("Lamp", "Cobber lamp with a cobweb");
-        Item apple  = new Food("Apple", "Delicious sweet juicy apple", 5);
-        Item lort = new Food("Lort", "Lort", (-(5)));
+        Item apple = new Food("Apple", "Delicious sweet juicy apple", 5);
+        Item lort = new Food("Berries", "Unknown berries.", (-(5)));
 
         room1.addItem(apple);
         room1.addItem(sword);
@@ -35,6 +35,10 @@ public class Map {
 
         //room 2 er tomt for items
         Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");
+        Item gun = new RangedWeapon("Gun", "Good old rusty gun", 5, 2);
+        room2.addItem(gun);
+        Item bat = new MelleeWeapon("Bat", "Wooden bat with leather grip", 3, Double.POSITIVE_INFINITY);
+        room2.addItem(bat);
 
         //room 3 opret
         Room room3 = new Room("Room 3", " The great forrest filled with poison spiders.");

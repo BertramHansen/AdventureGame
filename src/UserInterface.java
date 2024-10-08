@@ -78,8 +78,16 @@ public class UserInterface {
                             count++;
                             System.out.println("\t" + count + ") " + item);
                         }
+                        System.out.println(adventure.seeCurrentEquipped());
+                        if (adventure.seeCurrentEquipped() == null) {
+                            System.out.println("Nothing is currently equipped");
+                        }if (adventure.seeCurrentEquipped() != null) {
+                            System.out.println("current equipped weapon: " + adventure.seeCurrentEquipped());
+                        }
+
                     } else {
                         System.out.println("Your inventory is empty. Pick up items by using the ''take'' command!");
+                        System.out.println("current equipped weapon: " + adventure.seeCurrentEquipped());
                     }
                     break;
                 case "help", "h":
@@ -118,13 +126,33 @@ public class UserInterface {
                             String eatResult = adventure.eat(itemName);
                             System.out.println(eatResult);
                         }
-                    } else {
-                        System.out.println("Invalid input.");
-
+                        break;
                     }
+
+                    if (userChoice.startsWith("equip ")) {
+                        String itemName = userChoice.substring(6).trim();
+                        if (!itemName.isEmpty()) {
+                            String equipResult = adventure.equip(itemName);
+                            System.out.println(equipResult + ". " + " ");
+                        }
+                        break;
+                    }
+
+//                    if (userChoice.startsWith("attack ")){
+//                        String attack = userChoice.substring(7).trim();
+//                        if (!attack.isEmpty()){
+//                            String attacking =
+//                        }
+//                    }
+
+                    else {
+                        System.out.println("Invalid input");
+                    }
+
             }
         }
-
     }
+
 }
+
 

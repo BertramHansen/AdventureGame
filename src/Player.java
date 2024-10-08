@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class Player {
     private Room placement;
     private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Item> equipped = new ArrayList<>();
+    private Weapon currentEquipped;
     private int playerHealth = 100;
 
     public Player(Room placement) {
@@ -22,8 +24,8 @@ public class Player {
         return playerHealth;
     }
 
-    public void setPlayerHealth(int playerHealth) {
-        this.playerHealth = playerHealth;
+    public ArrayList<Item> getEquipped() {
+        return equipped;
     }
 
     public Room move(String movement) {
@@ -54,6 +56,23 @@ public class Player {
         }
 
     }
+
+    public Item getCurrentEquipped() {
+        return currentEquipped;
+    }
+
+//    public String equipWeapon(String itemName) {
+//        Item foundWeapon = findItemInInventory(itemName);
+//        if (foundWeapon != null) {
+//            equipped.add(foundWeapon);
+//            inventory.remove(foundWeapon);
+//
+
+//            return "You just equipped the " + foundWeapon.getShortName();
+//        } else {
+//            return "There is no " + foundWeapon + " in your inventory";
+//        }
+//    }
 
     public String dropItem(String itemName) {
         Item foundItem = findItemInInventory(itemName);
@@ -110,7 +129,7 @@ public class Player {
                 placement.removeItem(food);
                 return FoodStatus.GOOD;
             } else if (food.getHealthPoint() < 0) {
-                decreaseHealth(- food.getHealthPoint());
+                decreaseHealth(-food.getHealthPoint());
                 inventory.remove(food);
                 placement.removeItem(food);
                 return FoodStatus.BAD;
@@ -120,7 +139,39 @@ public class Player {
         }
         return FoodStatus.NOT_FOOD;
     }
+
+    public WeaponStatus equip(String weaponName) {
+        Item weaponEquip = findItemInInventory(weaponName);
+        if (weaponEquip == null) {
+            return WeaponStatus.NOT_IN_INVENTORY;
+
+        }
+        if (weaponEquip instanceof Weapon) {
+            Weapon weapon = (Weapon) weaponEquip;
+            inventory.remove(weapon);
+            equipped.add(weapon);
+            currentEquipped = weapon;
+            return WeaponStatus.WEAPON;
+        } else if (!(weaponEquip instanceof Weapon)) {
+            return WeaponStatus.NOT_WEAPON;
+        }
+        return WeaponStatus.NOT_WEAPON;
+    }
+
 }
+    
+//    public WeaponStatus useWeapon(String itemName){
+//        if (equipped.isEmpty()){
+//            return WeaponStatus.NOTHING_EQUIPPED;
+//        } else if (!equipped.isEmpty()&& currentEquipped.remainingUses()>0){
+//            return WeaponStatus.AMMO_LEFT;
+//        }else if(!equipped.isEmpty() && currentEquipped.remainingUses()==0){
+//            return WeaponStatus.NO_AMMO_LEFT;
+//        }
+//        return WeaponStatus.NO_AMMO_LEFT;
+//    }
+//
+//}
 
 
 //        @Override

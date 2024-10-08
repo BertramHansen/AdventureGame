@@ -16,7 +16,7 @@ public class Adventure {
         if (room != null) {
             return "You have just moved to " + player.currentRoomName() + " " + player.currentRoomDescription();
 
-        } else{
+        } else {
             return "You cannot go that way";
         }
     }
@@ -39,6 +39,10 @@ public class Adventure {
         return player.getInventory();
     }
 
+    public ArrayList<Item> seePlayerEquipped() {
+        return player.getEquipped();
+    }
+
     public ArrayList<Item> seeItemsInCurrentRoom() {
         ArrayList<Item> itemsInRoom = new ArrayList<>();
         itemsInRoom = player.getPlacement().getItems();
@@ -54,7 +58,7 @@ public class Adventure {
         return player.currentRoomDescription();
     }
 
-    public int seeHealth(){
+    public int seeHealth() {
         return player.getPlayerHealth();
     }
 
@@ -62,7 +66,7 @@ public class Adventure {
         FoodStatus status = player.eat(foodName);
         switch (status) {
             case GOOD:
-                return "You ate the " + foodName + "!" + " You gained " + player.getPlayerHealth() + " healthpoints.";
+                return "You ate the " + foodName + "!" + " You now have: " + player.getPlayerHealth() + " healthpoints.";
             case BAD:
                 return "That wasn't good..." + "you just lost health :( Current health:" + player.getPlayerHealth() + " healthpoints";
             case NOT_FOOD:
@@ -73,4 +77,26 @@ public class Adventure {
             default:
                 return "Invalid input!";
         }
-} }
+    }
+
+    public Item seeCurrentEquipped() {
+        return player.getCurrentEquipped();
+    }
+
+
+    public String equip(String itemName) {
+        WeaponStatus status = player.equip(itemName);
+        switch (status) {
+            case WEAPON:
+                return "You just equipped the " + itemName + player.getCurrentEquipped();
+            case NOT_WEAPON:
+                return "That is not a weapon. You cannot equip that";
+            case NOT_IN_INVENTORY:
+                return "You do not have such in inventory.";
+
+
+            default:
+                return "invalid input!";
+        }
+    }
+}
