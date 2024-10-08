@@ -7,4 +7,5 @@ public enum WeaponStatus {
     NO_AMMO_LEFT,
     AMMO_LEFT,
     NOTHING_EQUIPPED,
+    USED,
 }

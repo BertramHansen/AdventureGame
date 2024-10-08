@@ -7,7 +7,7 @@ public class RangedWeapon extends Weapon{
 
     @Override
     public double remainingUses() {
-        return remainingUses();
+        return super.remainingUses();
     }
 
     }

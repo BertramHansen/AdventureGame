@@ -138,12 +138,12 @@ public class UserInterface {
                         break;
                     }
 
-//                    if (userChoice.startsWith("attack ")){
-//                        String attack = userChoice.substring(7).trim();
-//                        if (!attack.isEmpty()){
-//                            String attacking =
-//                        }
-//                    }
+                    if (userChoice.startsWith("attack ")){
+                        String attack = userChoice.substring(7).trim();
+                        if (!attack.isEmpty()){
+                            String attackResult = adventure.attack();
+                        }
+                    }
 
                     else {
                         System.out.println("Invalid input");

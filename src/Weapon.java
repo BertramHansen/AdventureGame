@@ -13,9 +13,16 @@ public abstract class Weapon extends Item {
     public double getDamage() {
         return damage;
     }
-    public double remainingUses(){
+
+    public double remainingUses() {
         return remainingUses;
     }
+    public void useWeapon(){
+            remainingUses--;
+    }
+
 }
+
+
 
 

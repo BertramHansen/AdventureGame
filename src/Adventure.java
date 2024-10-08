@@ -80,23 +80,27 @@ public class Adventure {
     }
 
     public Item seeCurrentEquipped() {
+
         return player.getCurrentEquipped();
     }
 
 
     public String equip(String itemName) {
         WeaponStatus status = player.equip(itemName);
-        switch (status) {
-            case WEAPON:
-                return "You just equipped the " + itemName + player.getCurrentEquipped();
-            case NOT_WEAPON:
-                return "That is not a weapon. You cannot equip that";
-            case NOT_IN_INVENTORY:
-                return "You do not have such in inventory.";
-
-
-            default:
-                return "invalid input!";
-        }
+        return switch (status) {
+            case WEAPON -> "You just equipped the " + itemName + player.getCurrentEquipped();
+            case NOT_WEAPON -> "That is not a weapon. You cannot equip that";
+            case NOT_IN_INVENTORY -> "You do not have such in inventory.";
+            default -> "invalid input!";
+        };
+    }
+    public String attack(){
+        WeaponStatus status = player.attack();
+        return switch (status) {
+            case NOTHING_EQUIPPED -> "Nothing is equipped so you cannot attack";
+            case USED -> "You just used the " + seeCurrentEquipped().getShortName();
+            case NO_AMMO_LEFT -> "No uses left.";
+            default -> "invalid input!";
+        };
     }
 }

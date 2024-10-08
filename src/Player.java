@@ -158,8 +158,21 @@ public class Player {
         return WeaponStatus.NOT_WEAPON;
     }
 
+
+    public WeaponStatus attack() {
+        if (currentEquipped == null) {
+            return WeaponStatus.NOTHING_EQUIPPED;
+        }
+        if (currentEquipped.remainingUses() > 0) {
+            currentEquipped.useWeapon();
+            return WeaponStatus.USED;
+        } else {
+            return WeaponStatus.NO_AMMO_LEFT;
+        }
+    }
 }
-    
+
+
 //    public WeaponStatus useWeapon(String itemName){
 //        if (equipped.isEmpty()){
 //            return WeaponStatus.NOTHING_EQUIPPED;
