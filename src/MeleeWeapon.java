@@ -5,11 +5,11 @@ public class MeleeWeapon extends Weapon {
 
     @Override
     public boolean canUse() {
-        return true; // Melee weapons can always be used
+        return true; // Melee weapons kan altid bruges 
     }
 
     @Override
     public void use() {
-        // Melee weapon usage logic (e.g., swing, hit)
+        // Melee weapon brug
     }
 }

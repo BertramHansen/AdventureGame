@@ -16,8 +16,6 @@ public class RangedWeapon extends Weapon {
         if (ammo > 0) {
             ammo--;
             // Ranged weapon firing logic
-        } else {
-            // No ammo left
         }
     }
 
