@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-//klassen skal videredelegere. (central) alt SOUT skal i UI.
+
 public class Adventure {
 
     protected Player player;

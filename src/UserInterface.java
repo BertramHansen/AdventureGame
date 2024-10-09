@@ -103,6 +103,10 @@ public class UserInterface {
                 case "exit":
                     System.out.println("You have now stopped the game. See ya! ");
                     break;
+                case "attack":
+                    String attackResult = adventure.attack();
+                    System.out.println(attackResult);  // Prints the result of the attack
+                    break;
 
                 default:
                     if (userChoice.startsWith("take ")) {
@@ -134,25 +138,21 @@ public class UserInterface {
                         if (!itemName.isEmpty()) {
                             String equipResult = adventure.equip(itemName);
                             System.out.println(equipResult + ". " + " ");
-                        }
-                        break;
+                        }  else {
+                            System.out.println("Invalid input");
+
                     }
 
-                    if (userChoice.startsWith("attack ")){
-                        String attack = userChoice.substring(7).trim();
-                        if (!attack.isEmpty()){
-                            String attackResult = adventure.attack();
                         }
                     }
 
-                    else {
-                        System.out.println("Invalid input");
+
                     }
 
             }
         }
-    }
 
-}
+
+
 
 

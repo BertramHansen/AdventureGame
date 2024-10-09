@@ -158,38 +158,19 @@ public class Player {
         return WeaponStatus.NOT_WEAPON;
     }
 
-
     public WeaponStatus attack() {
-        if (currentEquipped == null) {
+        Weapon weapon = currentEquipped;
+        if (weapon==null){
             return WeaponStatus.NOTHING_EQUIPPED;
-        }
-        if (currentEquipped.remainingUses() > 0) {
-            currentEquipped.useWeapon();
+        }else if(weapon.canUse()){
+            weapon.use();
             return WeaponStatus.USED;
-        } else {
+        }else{
             return WeaponStatus.NO_AMMO_LEFT;
         }
     }
+
 }
-
-
-//    public WeaponStatus useWeapon(String itemName){
-//        if (equipped.isEmpty()){
-//            return WeaponStatus.NOTHING_EQUIPPED;
-//        } else if (!equipped.isEmpty()&& currentEquipped.remainingUses()>0){
-//            return WeaponStatus.AMMO_LEFT;
-//        }else if(!equipped.isEmpty() && currentEquipped.remainingUses()==0){
-//            return WeaponStatus.NO_AMMO_LEFT;
-//        }
-//        return WeaponStatus.NO_AMMO_LEFT;
-//    }
-//
-//}
-
-
-//        @Override
-//        public String toString {
-//            return "Current health: " + playerHealth;
 
 
 

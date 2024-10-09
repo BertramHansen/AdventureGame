@@ -37,7 +37,7 @@ public class Map {
         Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");
         Item gun = new RangedWeapon("Gun", "Good old rusty gun", 5, 2);
         room2.addItem(gun);
-        Item bat = new MelleeWeapon("Bat", "Wooden bat with leather grip", 3, Double.POSITIVE_INFINITY);
+        Item bat = new MeleeWeapon("Bat", "Wooden bat with leather grip", 3);
         room2.addItem(bat);
 
         //room 3 opret
@@ -122,15 +122,4 @@ public class Map {
     public Room getCurrentRoom() {
         return currentRoom;
     }
-
-//    public boolean noNeighbours() {
-//        if (getCurrentRoom().getNeighbourWest() == null
-//                && getCurrentRoom().getNeighbourEast() == null
-//                && getCurrentRoom().getNeighbourSouth() == null
-//                && getCurrentRoom().getNeighbourNorth() == null) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 }
