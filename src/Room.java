@@ -6,7 +6,7 @@ public class Room {
     private String name;
     private String roomDescription;
     private ArrayList<Item> items = null;
-
+    private ArrayList<Enemy> enemyList;
     //Naboer
     private Room neighbourNorth, neighbourSouth, neighbourWest, neighbourEast;
 
@@ -14,6 +14,7 @@ public class Room {
         this.name = name;
         this.roomDescription = roomDescription;
         this.items = new ArrayList<>();
+        this.enemyList = new ArrayList<>();
     }
 
     //getter for name og description
@@ -78,6 +79,18 @@ public class Room {
 
     public void removeItem(Item item) {
         items.remove(item);
+    }
+
+    public ArrayList<Enemy> getEnemyList(){
+        return enemyList;
+    }
+
+    public void addEnemy(Enemy enemy){
+        enemyList.add(enemy);
+    }
+
+    public void removeEnemy(Enemy enemy){
+        enemyList.remove(enemy);
     }
 
 

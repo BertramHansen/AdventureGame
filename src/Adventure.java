@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class Adventure {
@@ -88,19 +89,68 @@ public class Adventure {
     public String equip(String itemName) {
         WeaponStatus status = player.equip(itemName);
         return switch (status) {
-            case WEAPON -> "You just equipped the " + itemName + player.getCurrentEquipped();
+            case WEAPON -> "You just equipped the " + itemName;
             case NOT_WEAPON -> "That is not a weapon. You cannot equip that";
             case NOT_IN_INVENTORY -> "You do not have such in inventory.";
             default -> "invalid input!";
         };
     }
-    public String attack(){
+
+    public String attack(Enemy enemy) {
         WeaponStatus status = player.attack();
-        return switch (status) {
-            case NOTHING_EQUIPPED -> "Nothing is equipped so you cannot attack";
-            case USED -> "You just used the " + seeCurrentEquipped().getShortName();
-            case NO_AMMO_LEFT -> "No uses left.";
-            default -> "invalid input!";
-        };
+        switch (status) {
+            case NOTHING_EQUIPPED:
+                return "Nothing is equipped so you cannot attack";
+
+            case USED:
+                enemy.enemyHit(player.getCurrentWeapon().getDamage());
+                player.playerHit(enemy.getWeapon().getDamage());
+
+                if (enemy.getHealthPoints() < 1) {
+                    Item droppedWeapon = enemy.getWeapon();
+                    player.getPlacement().addItem(droppedWeapon);
+                    player.getPlacement().removeEnemy(enemy);
+                    return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase(Locale.ROOT) + " and dealt "
+                            + player.getCurrentWeapon().getDamage() +
+                            " damage to the " + enemy.getName() + ". But the " + enemy.getName() + " strikes back dealing: "
+                            + enemy.getWeapon().getDamage() + " damage!" +
+                            "You defeated the enemy and it dropped a " + droppedWeapon.getShortName() +
+                            "\nYou now have " + player.getPlayerHealth() + " HP left.";
+
+
+                }
+
+                return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase(Locale.ROOT) + " and dealt "
+                        + player.getCurrentWeapon().getDamage() +
+                        " damage to the " + enemy.getName() + ". But the " + enemy.getName() + " strikes back dealing: "
+                        + enemy.getWeapon().getDamage() + " damage!" +
+                        "\nYou now have " + player.getPlayerHealth() + " HP left.";
+
+
+            case NO_AMMO_LEFT:
+                return "No uses left.";
+            default:
+
+                return "invalid input!";
+        }
+
     }
+
+    public boolean playerDead() {
+        if (player.getPlayerHealth()<=0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public Enemy seeEnemies() {
+
+        for (Enemy enemy : player.getPlacement().getEnemyList()) {
+            return enemy;
+
+        }
+        return null;
+    }
+
 }

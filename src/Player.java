@@ -6,6 +6,7 @@ public class Player {
     private ArrayList<Item> equipped = new ArrayList<>();
     private Weapon currentEquipped;
     private int playerHealth = 100;
+    private boolean playerDead = false;
 
     public Player(Room placement) {
         this.placement = placement;
@@ -61,18 +62,6 @@ public class Player {
         return currentEquipped;
     }
 
-//    public String equipWeapon(String itemName) {
-//        Item foundWeapon = findItemInInventory(itemName);
-//        if (foundWeapon != null) {
-//            equipped.add(foundWeapon);
-//            inventory.remove(foundWeapon);
-//
-
-//            return "You just equipped the " + foundWeapon.getShortName();
-//        } else {
-//            return "There is no " + foundWeapon + " in your inventory";
-//        }
-//    }
 
     public String dropItem(String itemName) {
         Item foundItem = findItemInInventory(itemName);
@@ -160,14 +149,30 @@ public class Player {
 
     public WeaponStatus attack() {
         Weapon weapon = currentEquipped;
-        if (weapon==null){
+        if (weapon == null) {
             return WeaponStatus.NOTHING_EQUIPPED;
-        }else if(weapon.canUse()){
+        } else if (weapon.canUse()) {
             weapon.use();
             return WeaponStatus.USED;
-        }else{
+        } else {
             return WeaponStatus.NO_AMMO_LEFT;
         }
+    }
+
+    public void isPlayerDead() {
+        if (playerHealth < 0) {
+            playerDead = true;
+        }
+    }
+
+
+    public Weapon getCurrentWeapon() {
+        return currentEquipped;
+
+    }
+
+    public void playerHit(int playerHitdamage) {
+        playerHealth -= playerHitdamage;
     }
 
 }

@@ -11,27 +11,43 @@ public class Map {
     public void buildMap() {
 
         ArrayList<Item> itemsRoom1 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom1 = new ArrayList<>();
         ArrayList<Item> itemsRoom2 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom2 = new ArrayList<>();
         ArrayList<Item> itemsRoom3 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom3 = new ArrayList<>();
         ArrayList<Item> itemsRoom4 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom4 = new ArrayList<>();
         ArrayList<Item> itemsRoom5 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom5 = new ArrayList<>();
         ArrayList<Item> itemsRoom6 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom6 = new ArrayList<>();
         ArrayList<Item> itemsRoom7 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom7 = new ArrayList<>();
         ArrayList<Item> itemsRoom8 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom8 = new ArrayList<>();
         ArrayList<Item> itemsRoom9 = new ArrayList<>();
+        ArrayList<Enemy> enemiesRoom9 = new ArrayList<>();
 
         //room 1 opret items og add
         Room room1 = new Room("Room 1", "A simple room with 2 doors ");
-
-        Item sword = new Item("Sword", "Small iron sword.");
+        //ITEMS ROOM 1
+        Weapon sword = new MeleeWeapon("Sword", "Small iron sword.", 20);
         Item lamp = new Item("Lamp", "Cobber lamp with a cobweb");
         Item apple = new Food("Apple", "Delicious sweet juicy apple", 5);
-        Item lort = new Food("Berries", "Unknown berries.", (-(5)));
+        Item berries = new Food("Berries", "Unknown berries.", (-(5)));
+        //Enemies and their weapons room 1
+
+
+        Weapon swordOrc = new MeleeWeapon("Sword", "Short sword made out of human bones", 21);
+        Enemy orc = new Enemy("Orc", "Green disgusting orc", 30, swordOrc);
+
+        room1.addEnemy(orc);
 
         room1.addItem(apple);
         room1.addItem(sword);
         room1.addItem(lamp);
-        room1.addItem(lort);
+        room1.addItem(berries);
 
         //room 2 er tomt for items
         Room room2 = new Room("Room 2", "A Small room with a boiling pot and 3 dead mice.");

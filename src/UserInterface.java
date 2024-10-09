@@ -30,8 +30,9 @@ public class UserInterface {
             counting++;
             System.out.println(counting + ". " + item);
         }
+        System.out.println("Enemies in this room: " + "\n" + adventure.seeEnemies());
         String userChoice = "";
-        while (!userChoice.equalsIgnoreCase("exit")) {
+        while (!userChoice.equalsIgnoreCase("exit") && !adventure.playerDead()) {
             Scanner input = new Scanner(System.in);
             userChoice = input.nextLine().trim();
 
@@ -53,6 +54,9 @@ public class UserInterface {
                             }
                         }
                     }
+                    if (adventure.seeEnemies() != null) {
+                        System.out.println("Enemies in this room: " + adventure.seeEnemies());
+                    }
 
                     break;
                 case "look", "l":
@@ -68,20 +72,24 @@ public class UserInterface {
                             System.out.println(counter + ". " + item);
                         }
                     }
+                    if (adventure.seeEnemies() != null) {
+                        System.out.println("Enemies in this room: " + adventure.seeEnemies());
+                    }
                     break;
 
                 case "inventory":
                     if (adventure.checkInventoryForItems()) {
                         System.out.println("Your inventory contains: ");
-                        int count = 0;
+                        int counters = 0;
                         for (Item item : adventure.seePlayerInventory()) {
-                            count++;
-                            System.out.println("\t" + count + ") " + item);
+                            counters++;
+                            System.out.println("\t" + counters + ") " + item);
                         }
                         System.out.println(adventure.seeCurrentEquipped());
                         if (adventure.seeCurrentEquipped() == null) {
                             System.out.println("Nothing is currently equipped");
-                        }if (adventure.seeCurrentEquipped() != null) {
+                        }
+                        if (adventure.seeCurrentEquipped() != null) {
                             System.out.println("current equipped weapon: " + adventure.seeCurrentEquipped());
                         }
 
@@ -103,10 +111,6 @@ public class UserInterface {
                 case "exit":
                     System.out.println("You have now stopped the game. See ya! ");
                     break;
-                case "attack":
-                    String attackResult = adventure.attack();
-                    System.out.println(attackResult);  // Prints the result of the attack
-                    break;
 
                 default:
                     if (userChoice.startsWith("take ")) {
@@ -125,12 +129,30 @@ public class UserInterface {
                     }
                     if (userChoice.startsWith("eat ")) {
                         String itemName = userChoice.substring(4).trim();
-                        itemName.equalsIgnoreCase(itemName);
+//                        itemName.equalsIgnoreCase(itemName);
                         if (!itemName.isEmpty()) {
                             String eatResult = adventure.eat(itemName);
                             System.out.println(eatResult);
                         }
                         break;
+                    }
+                    if (userChoice.startsWith("attack ")) {
+                        String attackName = userChoice.substring(7).trim();
+                        if (!attackName.isEmpty()) {
+                            Enemy target = null;
+                            for (Enemy enemy : adventure.player.getPlacement().getEnemyList()) {
+                                if (enemy.getName().equalsIgnoreCase(attackName)) {
+                                    target = enemy;
+                                    break;
+                                }
+                            }
+                            if (target != null) {
+                                String attackResult = adventure.attack(target);
+                                System.out.println(attackResult);
+                            } else {
+                                System.out.println("There is no enemy like that in this room");
+                            }
+                        }
                     }
 
                     if (userChoice.startsWith("equip ")) {
@@ -138,19 +160,19 @@ public class UserInterface {
                         if (!itemName.isEmpty()) {
                             String equipResult = adventure.equip(itemName);
                             System.out.println(equipResult + ". " + " ");
-                        }  else {
+                        } else {
                             System.out.println("Invalid input");
 
-                    }
-
                         }
-                    }
-
 
                     }
-
             }
+
+
         }
+
+    }
+}
 
 
 
