@@ -6,7 +6,6 @@ public class Adventure {
 
     protected Player player;
     protected Map map;
-
     public Adventure() {
         map = new Map();
         player = new Player(map.getCurrentRoom());
@@ -40,9 +39,6 @@ public class Adventure {
         return player.getInventory();
     }
 
-    public ArrayList<Item> seePlayerEquipped() {
-        return player.getEquipped();
-    }
 
     public ArrayList<Item> seeItemsInCurrentRoom() {
         ArrayList<Item> itemsInRoom = new ArrayList<>();

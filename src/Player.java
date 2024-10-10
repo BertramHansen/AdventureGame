@@ -6,7 +6,6 @@ public class Player {
     private ArrayList<Item> equipped = new ArrayList<>();
     private Weapon currentEquipped;
     private int playerHealth = 100;
-    private boolean playerDead = false;
 
     public Player(Room placement) {
         this.placement = placement;
@@ -23,10 +22,6 @@ public class Player {
 
     public int getPlayerHealth() {
         return playerHealth;
-    }
-
-    public ArrayList<Item> getEquipped() {
-        return equipped;
     }
 
     public Room move(String movement) {
