@@ -22,4 +22,8 @@ public class RangedWeapon extends Weapon {
     public int getAmmo() {
         return ammo;
     }
+    @Override
+    public String toString(){
+        return getShortName() + ": " + getLongName() + " Damage: " + getDamage() + " Ammo left: " + getAmmo();
+    }
 }

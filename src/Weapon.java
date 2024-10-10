@@ -17,4 +17,8 @@ public abstract class Weapon extends Item {
     public int getDamage() {
         return damage;
     }
+    @Override
+    public String toString(){
+        return getShortName() + ": " + getLongName() + " Damage: " + getDamage();
+    }
 }

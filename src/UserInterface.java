@@ -10,8 +10,10 @@ public class UserInterface {
 
         System.out.println("==========[======================================================================================>>>>");
         //Emojipedia.com er en hjemmeside hvor man kna kopiere kode til eojis og bruge dem i strings
-        System.out.println("\t\uD83D\uDD25Welcome to Bertrams Adventure Game!!\uD83D\uDD25 ");
-        System.out.println("Your command options are: ");
+        System.out.println("\t\uD83D\uDD25Welcome to WitchHunt!!\uD83D\uDD25 ");
+        System.out.println("\tThe objective of the game is to find the witch, kill her and equip her weapon!!");
+        System.out.println("TIPS: You dont need to fight the enemies, you can move freely around but you will need to get the Sword made out of human bones to defeat The Witch.\n\t  Try and find it!!! Also, food is probably a good idea to save for the big boss fight!");
+        System.out.println("\nYour command options are: ");
         System.out.println("\t1) You can move North, east, south or west. You do by typing ''go'' followed by the one of the 4 compass directions");
         System.out.println("\t2) You can take a look at your surroundings. Type ''look''");
         System.out.println("\t3) Should you be stuck or in need of the instructions again... (noob)... Type ''help''");
@@ -19,18 +21,20 @@ public class UserInterface {
         System.out.println("\t5) You can take an item by typing ''take'' and then the short name for the item you want to pick up.");
         System.out.println("\t6) If you want to check your inventory, type ''inventory''");
         System.out.println("\t7) If you want to drop an item from your inventory, type ''drop and then the short name for the item you wish to drop.");
-        System.out.println("\tNOTE!!!! PRESS ENTER WHEN YOU HAVE TYPED THE COMMAND YOU WISH TO COMPLETE:)");
+        System.out.println("\t8) You can gain HP by eating food laying around the room you are standing in or at anytime if you pick it up and place it your inventory.\n\t   You do by typing ''eat'' followed by the food you want to eat.");
+        System.out.println("\t9) If you have picked up a weapon you need to equip it before you can use it. Do by typing ''equip'' followed by the weapon you would like to equip.");
+        System.out.println("\t10) If you have a weapon equipped and there is an enemy present in the room you are standing in. Type ''attack'' follow by the name of the enemy you wish to attack, but be careful, they might hit you back. .");
+        System.out.println("\n\tNOTE!!!! PRESS ENTER WHEN YOU HAVE TYPED THE COMMAND YOU WISH TO COMPLETE:)");
         System.out.println("\nGood luck... you are going to need it...");
-        System.out.println("==========[======================================================================================>>>>");
+        System.out.println("\n==========[======================================================================================>>>>");
 
 
-        System.out.println("You are starting here:\n" + adventure.getCurrentRoomName() + ": " + adventure.getCurrentRoomDescription());
+        System.out.println("\nYou are starting here:\n" + adventure.getCurrentRoomName() + ": " + adventure.getCurrentRoomDescription());
         int counting = 0;
         for (Item item : adventure.seeItemsInCurrentRoom()) {
             counting++;
             System.out.println(counting + ". " + item);
         }
-        System.out.println("Enemies in this room: " + "\n" + adventure.seeEnemies());
         String userChoice = "";
         while (!userChoice.equalsIgnoreCase("exit") && !adventure.playerDead()) {
             Scanner input = new Scanner(System.in);
@@ -85,7 +89,7 @@ public class UserInterface {
                             counters++;
                             System.out.println("\t" + counters + ") " + item);
                         }
-                        System.out.println(adventure.seeCurrentEquipped());
+//                        System.out.println(adventure.seeCurrentEquipped());
                         if (adventure.seeCurrentEquipped() == null) {
                             System.out.println("Nothing is currently equipped");
                         }
@@ -118,25 +122,18 @@ public class UserInterface {
                         if (!itemName.isEmpty()) {
                             System.out.println(adventure.player.takeItem(itemName));
                         }
-                        break;
-                    }
-                    if (userChoice.startsWith("drop ")) {
+                    } else if (userChoice.startsWith("drop ")) {
                         String itemName = userChoice.substring(5).trim();
                         if (!itemName.isEmpty()) {
                             System.out.println(adventure.player.dropItem(itemName));
                         }
-                        break;
-                    }
-                    if (userChoice.startsWith("eat ")) {
+                    } else if (userChoice.startsWith("eat ")) {
                         String itemName = userChoice.substring(4).trim();
-//                        itemName.equalsIgnoreCase(itemName);
                         if (!itemName.isEmpty()) {
                             String eatResult = adventure.eat(itemName);
                             System.out.println(eatResult);
                         }
-                        break;
-                    }
-                    if (userChoice.startsWith("attack ")) {
+                    } else if (userChoice.startsWith("attack ")) {
                         String attackName = userChoice.substring(7).trim();
                         if (!attackName.isEmpty()) {
                             Enemy target = null;
@@ -153,27 +150,23 @@ public class UserInterface {
                                 System.out.println("There is no enemy like that in this room");
                             }
                         }
-                    }
-
-                    if (userChoice.startsWith("equip ")) {
+                    } else if (userChoice.startsWith("equip ")) {
                         String itemName = userChoice.substring(6).trim();
                         if (!itemName.isEmpty()) {
                             String equipResult = adventure.equip(itemName);
                             System.out.println(equipResult + ". " + " ");
-                        } else {
-                            System.out.println("Invalid input");
-
                         }
-
+                    } else {
+                        System.out.println("Invalid input");
                     }
+                    break;
             }
 
-
         }
-
     }
-}
 
+
+}
 
 
 

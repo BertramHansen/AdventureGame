@@ -159,13 +159,6 @@ public class Player {
         }
     }
 
-    public void isPlayerDead() {
-        if (playerHealth < 0) {
-            playerDead = true;
-        }
-    }
-
-
     public Weapon getCurrentWeapon() {
         return currentEquipped;
 
