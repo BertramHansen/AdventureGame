@@ -106,17 +106,15 @@ public class Adventure {
                     Item droppedWeapon = enemy.getWeapon();
                     player.getPlacement().addItem(droppedWeapon);
                     player.getPlacement().removeEnemy(enemy);
-                    return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase(Locale.ROOT) + " and dealt "
+                    return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase() + " and dealt "
                             + player.getCurrentWeapon().getDamage() +
                             " damage to the " + enemy.getName() + ". But the " + enemy.getName() + " strikes back dealing: "
                             + enemy.getWeapon().getDamage() + " damage!" +
                             "You defeated the enemy and it dropped a " + droppedWeapon.getShortName() +
                             "\nYou now have " + player.getPlayerHealth() + " HP left.";
-
-
                 }
 
-                return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase(Locale.ROOT) + " and dealt "
+                return "You just used the " + seeCurrentEquipped().getShortName().toLowerCase() + " and dealt "
                         + player.getCurrentWeapon().getDamage() +
                         " damage to the " + enemy.getName() + ". But the " + enemy.getName() + " strikes back dealing: "
                         + enemy.getWeapon().getDamage() + " damage!" +

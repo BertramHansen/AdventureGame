@@ -8,6 +8,7 @@ public abstract class Weapon extends Item {
     }
 
     public abstract boolean canUse();
+
     public abstract void use();
 
     public String getName() {
